@@ -1,0 +1,7 @@
+{
+  "name": "appconamype tienda",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
