@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ToastController, ActionSheetController, ModalController, AlertController, Platform } from '@ionic/angular';
@@ -25,7 +25,8 @@ export class DetalleProductoPage implements OnInit {
     public modalCtrl: ModalController,
     public alertController: AlertController,
     private platform: Platform,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   id: string;
@@ -40,6 +41,9 @@ export class DetalleProductoPage implements OnInit {
   nombrepersona: string;
   descripcionCompra: string;
   idpersonaproducto: any;
+
+  detalle: any;
+  datosProducto: any;
 
   slideOptActores = {
     slidesPerView: 3.3,
@@ -59,6 +63,7 @@ export class DetalleProductoPage implements OnInit {
     this.httpService.get(`producto/${this.id}`).subscribe(
       (res: any) => {
         if (res) {
+          this.detalle = res;
           this.tipoproducto = res.nombre_tipo_producto;
           this.marca = res.nombre_marca;
           this.nombre = res.nombre;
@@ -80,11 +85,16 @@ export class DetalleProductoPage implements OnInit {
   }
 
   async addCarrito() {
+    this.datosProducto = this.detalle;
     const toast = await this.toastController.create({
       message: 'Este producto se agrego a su carrito de compras.',
       duration: 2000
     });
     toast.present();
+  }
+
+  LinkCarrito(){
+    this.router.navigate(['/carrito-compra'], {queryParams: {datos: this.datosProducto}});
   }
 
   async presentActionSheet() {

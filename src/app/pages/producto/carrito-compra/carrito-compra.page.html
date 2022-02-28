@@ -16,15 +16,15 @@
   <ion-list>
     <ion-list-header><b>Productos agregados a la cesta</b></ion-list-header>
 
-    <ion-item lines="none" color="light">
+    <ion-item *ngFor="let inventario of detalle" lines="none" color="light">
       <ion-checkbox color="dark" checked slot="start"></ion-checkbox>
       <ion-thumbnail slot="end" color="light">
-        <img src="../../../assets/products/1.jpg">
+        <img src="{{inventario.url_foto}}">
       </ion-thumbnail>
       <ion-label>
-        <h4><b>Calzado de Hombre Negro.</b></h4>
-        <p>Calzado formal para hombre estilo moccacin negro.</p>
-        <h2><b>$ 78.00</b></h2>
+        <h4><b>{{inventario.nombre}}</b></h4>
+        <p>{{inventario.descripcion}}</p>
+        <h2><b>$ {{inventario.precio}}</b></h2>
         <ion-button class="ion-float-left" color="primary" fill="clear">
           Eliminar
         </ion-button>
@@ -40,7 +40,7 @@
       </ion-label>
     </ion-item>
 
-    <ion-item lines="none" color="light">
+    <!-- <ion-item lines="none" color="light">
       <ion-checkbox color="dark" slot="start"></ion-checkbox>
       <ion-thumbnail slot="end" color="light">
         <img src="../../../assets/products/2.jpg">
@@ -62,7 +62,7 @@
           </ion-button>
         </ion-buttons>
       </ion-label>
-    </ion-item>
+    </ion-item> -->
 
   </ion-list>
 

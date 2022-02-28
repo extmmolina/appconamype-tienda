@@ -80,7 +80,7 @@
 
 <ion-footer no-border *ngIf="tipoproductoid">
   <ion-toolbar color="ligth" *ngIf="authUser">
-    <ion-button class="texto-light" slot="start" color="primary" shape="round" fill="clear" routerLink="/carrito-compra">
+    <ion-button class="texto-light" slot="start" color="primary" shape="round" fill="clear" (click)="LinkCarrito()" routerLink="/carrito-compra">
       <i class="material-icons-outlined" slot="start" color="primary">shopping_cart</i>
     </ion-button>
     <ion-buttons slot="end">

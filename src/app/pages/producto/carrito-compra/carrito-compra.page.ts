@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { CompraProductoPage } from '../compra-producto/compra-producto.page';
 
@@ -8,12 +9,16 @@ import { CompraProductoPage } from '../compra-producto/compra-producto.page';
   styleUrls: ['./carrito-compra.page.scss'],
 })
 export class CarritoCompraPage implements OnInit {
-
+  detalle:any = [];
   titulo: string;
-  constructor(public modalCtrl: ModalController, public toastController: ToastController) { }
+  constructor(public modalCtrl: ModalController, public toastController: ToastController, private router: Router) { }
 
   ngOnInit() {
     this.titulo = 'Cesta(1)';
+    if (this.router.getCurrentNavigation().extras.queryParams.datos) {
+      this.detalle.push(this.router.getCurrentNavigation().extras.queryParams.datos);
+    }
+    console.log(JSON.stringify(this.detalle));
   }
 
   async showModal() {

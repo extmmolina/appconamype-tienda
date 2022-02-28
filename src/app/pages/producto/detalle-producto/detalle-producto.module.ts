@@ -11,6 +11,7 @@ import { ComponentsModule } from 'src/app/components/components.component';
 import { CompraProductoPage } from '../compra-producto/compra-producto.page';
 import { CompraProductoPageModule } from '../compra-producto/compra-producto.module';
 import { SwiperModule } from 'swiper/angular';
+import { CarritoCompraPage } from '../carrito-compra/carrito-compra.page';
 
 @NgModule({
   entryComponents: [
@@ -25,6 +26,7 @@ import { SwiperModule } from 'swiper/angular';
     CompraProductoPageModule,
     SwiperModule
   ],
+  providers: [CarritoCompraPage],
   declarations: [DetalleProductoPage]
 })
 export class DetalleProductoPageModule {}
