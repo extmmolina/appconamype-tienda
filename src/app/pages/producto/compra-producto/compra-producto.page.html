@@ -1,0 +1,74 @@
+<ion-header no-border translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card color="light">
+    <ion-card-header color="secondary">
+      <ion-card-title class="titulo">Ingrese su tarjeta de credito</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="floating">N.° de tarjeta</ion-label>
+        <ion-input inputmode="numeric"></ion-input>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-item>
+                <ion-label position="floating">MM</ion-label>
+                <ion-input inputmode="numeric"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-item>
+                <ion-label position="floating">YY</ion-label>
+                <ion-input inputmode="numeric"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item>
+        <ion-label position="floating">Código de seguridad CVV</ion-label>
+        <ion-input inputmode="numeric"></ion-input>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Nombres</ion-label>
+                <ion-input inputmode="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Apellidos</ion-label>
+                <ion-input inputmode="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+
+    <ion-button shape="round" expand="full" (click)="cerrarModal()">
+      Realizar pago
+    </ion-button>
+  </ion-card>
+</ion-content>

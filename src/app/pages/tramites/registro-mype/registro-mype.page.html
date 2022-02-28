@@ -1,0 +1,421 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content class="padding">
+
+  <ion-card *ngIf="!valid">
+    <ion-card-content>
+      <form #formValidacion="ngForm" (ngSubmit)="onSubmitValid()">
+        <ion-list>
+          <ion-item-divider lines="full">
+            <ion-label>Verifique su NIT</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label position="floating">NIT</ion-label>
+            <ion-input
+                    type="text"
+                    name="nit"
+                    clearInput
+                    [(ngModel)]="formValid.nit"
+                    mask="0000-000000-000-0"
+                    required
+            >
+            </ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button
+                expand="full"
+                shape="round"
+                type="submit"
+                [disabled]="formValidacion.invalid"
+        >
+          Verificar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="valid">
+    <ion-card-content>
+      <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+        <ion-list>
+          <ion-item-divider lines="full">
+            <ion-label>Información de la empresa</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label position="floating">DUI</ion-label>
+            <ion-input
+                    type="text"
+                    name="dui"
+                    [(ngModel)]="form.dui"
+                    mask="00000000-0"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">DUI Operador</ion-label>
+            <ion-input
+                    type="text"
+                    name="dui_operador"
+                    [(ngModel)]="form.dui_operador"
+                    mask="00000000-0"
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">NIT</ion-label>
+            <ion-input
+                    type="text"
+                    name="nit"
+                    [(ngModel)]="form.nit"
+                    mask="0000-000000-000-0"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Constitución</ion-label>
+            <ion-select
+                    placeholder="Seleccione..."
+                    interface="action-sheet"
+                    name="constitucion_id"
+                    [(ngModel)]="form.constitucion_id">
+              <ion-select-option value="1">Persona natural</ion-select-option>
+              <ion-select-option value="2">Persona Jurídica</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tipo asociación</ion-label>
+            <ion-select
+                    placeholder="Seleccione..."
+                    interface="action-sheet"
+                    name="tipo_asociacion_id"
+                    [(ngModel)]="form.tipo_asociacion_id">
+              <ion-select-option *ngFor="let ta of tipoAsociacion" [value]="ta.tipo_asociacion_id">
+                {{ta.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input
+                    type="text"
+                    name="nombre"
+                    [(ngModel)]="form.nombre"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Razon social</ion-label>
+            <ion-input
+                    type="text"
+                    name="razon_social"
+                    [(ngModel)]="form.razon_social"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">NRC</ion-label>
+            <ion-input
+                    type="text"
+                    name="iva"
+                    [(ngModel)]="form.iva"
+                    mask="000000-0"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <i class="material-icons-outlined" slot="end">calendar_today</i>
+            <ion-label>Fecha fundación</ion-label>
+            <ion-datetime
+                    #fFundacion
+                    displayFormat="DD/MM/YYYY"
+                    min="1900"
+                    (ionChange)="fechaFundacion(fFundacion.value)"
+                    doneText="Aceptar"
+            ></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-textarea
+                    type="text"
+                    name="apellido"
+                    [(ngModel)]="form.direccion"
+                    required
+                    clearInput
+            >
+            </ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Departamento</ion-label>
+            <ion-select
+                    placeholder="Seleccione..."
+                    interface="action-sheet"
+                    name="departamento_id"
+                    (ionChange)="onChangeDepto()"
+                    [(ngModel)]="form.departamento_id">
+              <ion-select-option *ngFor="let depto of departamentos" [value]="depto.departamento_id">
+                {{depto.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Municipio</ion-label>
+            <ion-select
+                    placeholder="Seleccione..."
+                    interface="action-sheet"
+                    name="municipio_id"
+                    [(ngModel)]="form.municipio_id">
+              <ion-select-option *ngFor="let munic of municipios" [value]="munic.municipio_id">
+                {{munic.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Zona</ion-label>
+            <ion-select
+                    placeholder="Seleccione..."
+                    interface="action-sheet"
+                    name="zona_id"
+                    [(ngModel)]="form.zona_id">
+              <ion-select-option value="1">Urbano</ion-select-option>
+              <ion-select-option value="2">Rural</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ventas</ion-label>
+            <ion-input
+                    type="number"
+                    name="ventas"
+                    [(ngModel)]="form.ventas"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Empleo hombres remunerado</ion-label>
+            <ion-input
+                    type="number"
+                    name="empleo_hr"
+                    [(ngModel)]="form.empleo_hr"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Empleo mujeres remunerado</ion-label>
+            <ion-input
+                    type="number"
+                    name="empleo_mr"
+                    [(ngModel)]="form.empleo_mr"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Empleo hombres no remunerado</ion-label>
+            <ion-input
+                    type="number"
+                    name="empleo_hnr"
+                    [(ngModel)]="form.empleo_hnr"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Empleo mujeres no remunerado</ion-label>
+            <ion-input
+                    type="number"
+                    name="empleo_mnr"
+                    [(ngModel)]="form.empleo_mnr"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Aprendices</ion-label>
+            <ion-input
+                    type="number"
+                    name="aprendices"
+                    [(ngModel)]="form.aprendices"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item (click)="showSingleSelectModal()">
+            <ion-label position="floating">CIIU primaria</ion-label>
+            <ion-input
+                    type="string"
+                    name="primaria"
+                    [(ngModel)]="ciiuPrimaria"
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item (click)="showMultipleSelectModal()">
+            <ion-label position="floating">CIIU secundaria</ion-label>
+            <ion-input
+                    type="string"
+                    name="secundarias"
+                    [(ngModel)]="form.secundarias"
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+          <ion-item-divider lines="full">
+            <ion-label>Información personal</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label position="floating">Primer nombre</ion-label>
+            <ion-input
+                    type="text"
+                    name="nombre1"
+                    [(ngModel)]="form.nombre1"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Segundo nombre</ion-label>
+            <ion-input
+                    type="text"
+                    name="nombre2"
+                    [(ngModel)]="form.nombre2"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Primer apellido</ion-label>
+            <ion-input
+                    type="text"
+                    name="apellido1"
+                    [(ngModel)]="form.apellido1"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Segundo apellido</ion-label>
+            <ion-input
+                    type="text"
+                    name="apellido2"
+                    [(ngModel)]="form.apellido2"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Conocido (Segun DUI)</ion-label>
+            <ion-input
+                    type="text"
+                    name="conocido"
+                    [(ngModel)]="form.conocido"
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">No. otro documento</ion-label>
+            <ion-input
+                    type="number"
+                    name="numero_otro_documento"
+                    [(ngModel)]="form.numero_otro_documento"
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <i class="material-icons-outlined" slot="end">calendar_today</i>
+            <ion-label>Fecha nacimiento</ion-label>
+            <ion-datetime
+                    #fechaNac
+                    displayFormat="DD/MM/YYYY"
+                    min="1900"
+                    [max]="fechaMin"
+                    (ionChange)="fechaNacimiento(fechaNac.value)"
+                    doneText="Aceptar"
+            ></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Sexo</ion-label>
+            <ion-select
+                    placeholder="Seleccione..."
+                    interface="action-sheet"
+                    name="sexo"
+                    [(ngModel)]="form.sexo">
+              <ion-select-option value="F">Femenino</ion-select-option>
+              <ion-select-option value="M">Masculino</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+                    type="email"
+                    name="email"
+                    autocomplete="off"
+                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                    [(ngModel)]="form.email"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input
+                    type="text"
+                    name="telefono"
+                    [(ngModel)]="form.telefono"
+                    mask="0000 0000"
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Celular</ion-label>
+            <ion-input
+                    type="text"
+                    name="celular"
+                    [(ngModel)]="form.celular"
+                    mask="0000 0000"
+                    required
+                    clearInput
+            >
+            </ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button
+                expand="full"
+                shape="round"
+                type="submit"
+                [disabled]="formulario.invalid"
+        >
+          Registrar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

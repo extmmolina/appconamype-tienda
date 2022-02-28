@@ -1,0 +1,24 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-uppercase">
+      <h6>CATÁLOGO</h6>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="background">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- Searchbar with a placeholder -->
+  <ion-searchbar placeholder="Buscar productos" animated (click)="showSingleSelectModal()"></ion-searchbar>
+  <app-productos-nuevos [nuevosProductos]="productosRecientes"></app-productos-nuevos>
+
+  <ion-row>
+    <h6 class="padding-start"><b>Productos</b></h6>
+  </ion-row>
+  <app-catalogo-productos></app-catalogo-productos>
+</ion-content>

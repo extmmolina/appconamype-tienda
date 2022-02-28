@@ -1,0 +1,53 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content class="padding">
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-label class="ion-text-center"><h1>Iniciar Sesión</h1></ion-label>
+    </ion-card-header>
+    <ion-card-content>
+      <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input
+              type="email"
+              name="name"
+              [(ngModel)]="usuario.name"
+              required
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input
+              type="password"
+              name="password"
+              [(ngModel)]="usuario.password"
+              required
+            >
+            </ion-input>
+          </ion-item>
+        </ion-list>
+
+        <ion-button
+          expand="full"
+          shape="round"
+          type="submit"
+          [disabled]="formulario.invalid"
+        >
+          Entrar
+        </ion-button>
+      </form>
+      <ion-button
+        expand="full"
+        routerLink="/cambio-clave"
+        color="primary"
+        fill="clear"
+      >
+        Olvide la clave
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

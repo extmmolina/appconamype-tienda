@@ -1,7 +1,8 @@
 {
   "name": "appconamype tienda",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

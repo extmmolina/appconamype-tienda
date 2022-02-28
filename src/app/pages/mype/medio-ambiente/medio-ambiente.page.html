@@ -1,0 +1,111 @@
+<ion-header no-border translucent>
+  <ion-toolbar color="primary" class="ion-text-uppercase">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <h6>MEDIO AMBIENTE</h6>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content>
+  <ion-card color="light">
+    <ion-card-header color="reddark">
+      HALLAZGO
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+      <p>En este apartado se colocara el hallazgo encontrado producto del diagnostico ambiental..</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header color="greendark">
+      JUSTIFICACIÓN
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+      <p>En este apartado se debera especificar la importancia de establecr un plan de accion para ek hallazgo.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header color="tealdark">
+      PLAN DE ACCION 
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+      <p>Se debera definir la o las medidas a tomar e implantar para mejorar o eliminar el hallazgo</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header color="pinkdark">
+      RESPONSABLE
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+      <p>Se debera colocar a la persona responsable, designada por la MYPE para garantizar la ejecucion del plan de datos.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header color="yellow">
+      FECHAS DE REALIZACION
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+      <p>Se explorara</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header color="purpledark">
+      LUGAR
+    </ion-card-header>
+    <ion-card-content>
+      <p></p>
+      <p>Se deber</p>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-card (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-card-header [color]="item.color">
+      <ion-card-title>{{item.nombre}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content color="light">
+      <app-expandible expandHeight='100px' [expanded]='item.expanded' color="light">
+        <ion-button slot="end" color="secondary">Agregar</ion-button>
+        <p>
+          Hello there.
+        </p>
+        <p>
+          Hello there.
+        </p>
+        <p>
+          Hello there.
+        </p>
+        <p>
+          Hello there.
+        </p>
+        <p>
+          Hello there.
+        </p>
+        <p>
+          Hello there.
+        </p>
+      </app-expandible>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,71 @@
+<app-header [titulo]="titulo"></app-header>
+<ion-content>
+  <div *ngIf="curso">
+    <ion-card color="light">
+      <ion-img *ngIf="curso.url_foto != 'N/A'" [src]="curso.url_foto"></ion-img>
+      <ion-img *ngIf="curso.url_foto == 'N/A'" src="assets/image-placeholder.png"></ion-img>
+    </ion-card>
+    <!--<ion-footer>
+      <ion-button expand="block" color="success" shape="round">
+        <ion-icon slot="start" name="star"></ion-icon>
+        Inscribirse
+      </ion-button>
+    </ion-footer>-->
+
+    <ion-card color="light">
+      <ion-card-header color="secondary">
+        <ion-card-title>{{ curso.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ curso.descripcion }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="light">
+      <ion-item color="secondary">
+        <ion-label>Clases</ion-label>
+      </ion-item>
+      <ion-item [href]="clase.url_clase" class="activated" *ngFor="let clase of clases">
+        <ion-label>{{ clase.nombre }}</ion-label>
+        <ion-button color="danger" slot="end" size="small" (click)="openUrl(clase.url_video)">
+          <i slot="start" class="material-icons-outlined">ondemand_video</i>
+        </ion-button>
+        <ion-button color="light" slot="end" size="small" (click)="openUrl(clase.url_documento)">
+          <i slot="start" class="material-icons-outlined">cloud_download</i>
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!clases">
+    <ion-card color="light">
+      <ion-thumbnail slot="center" style="width: 100%; height: 200px">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+    </ion-card>
+
+    <ion-card color="light">
+      <ion-card-header color="secondary">
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="light">
+      <ion-item color="secondary">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+      <ion-item class="activated" *ngFor="let index of [1, 2, 3]">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>

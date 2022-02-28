@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-card color="light">
+    <ion-card-header>
+      <img [src]="calendario" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-list>
+      <div *ngFor="let item of items">
+        <ion-item lines="none" color="light">
+          <ion-label>
+            Dia: {{item.dia}}
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngFor="let evento of item.eventos" color="light">
+          <ion-label class="ion-text-wrap">
+            <ion-text color="primary">
+              <h3>{{evento.titulo}}</h3>
+            </ion-text>
+            <ion-text color="secondary">
+              <p>
+                {{evento.descripcion}}
+              </p>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-card>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" size="small" (click)="abrirDoc(documento)">
+      <i class="material-icons-outlined">cloud_download</i>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

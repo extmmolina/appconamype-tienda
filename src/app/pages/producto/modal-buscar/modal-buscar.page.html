@@ -1,0 +1,45 @@
+<ion-header no-border translucent>
+  <ion-toolbar color="primary" class="ion-text-uppercase">
+    <ion-button slot="start" fill="clear" color="light" (click)="selectedProduct()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <h6>BUSQUEDA</h6>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar color="light" placeholder="Buscar producto" type="text" debounce="5000" (ionInput)="getItems($event)" [(ngModel)]="busqueda"></ion-searchbar>
+
+<ion-content class="ion-padding">
+  <ion-header *ngIf="this.items.length == 0" class="ion-justify-content-center ion-text-center">
+    <ion-toolbar>
+      <ion-title>Articulo no encontrado</ion-title>
+      <ion-card-subtitle>Busqueda sin resultados para "{{ this.busqueda}}"</ion-card-subtitle>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list *ngIf="isItemAvailable">
+    <ion-list-header>Busqueda: {{this.busqueda}}</ion-list-header>
+    <ion-item lines="none" color="light" *ngFor="let prod of items" (click)="navigateTo(prod.producto_id, prod.tipo_producto_id)">
+      <ion-thumbnail slot="end" color="light">
+        <img [src]="prod.url_foto">
+      </ion-thumbnail>
+      <ion-label>
+        <h6 class="title-producto"><b>{{ prod.nombre }}</b></h6>
+        <p class="title-producto">{{ prod.descripcion }}</p>
+        <h6 color="primary" class="title-producto"><b>
+            <ion-icon slot="start" name="cube"></ion-icon> {{ prod.nombre_marca }}
+          </b></h6>
+        <h6 class="title-producto" *ngIf="prod.precio_promocion === '0.00'"><b>$ {{ prod.precio }}</b></h6>
+        <h6 class="title-producto" *ngIf="prod.precio_promocion !== '0.00'">
+          <s>$ {{ prod.precio }}</s> <br>
+          <ion-badge class="title-producto" color="reddark">$ {{ prod.precio_promocion }}</ion-badge>
+        </h6>
+        <div class="sub-producto ion-text-end">
+          <ion-label color="danger"><b>
+              <ion-icon slot="start" name="person"></ion-icon> {{ prod.nombre_persona +' '+prod.apellido_persona}}
+            </b></ion-label>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

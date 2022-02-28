@@ -1,0 +1,67 @@
+<!-- 
+<div class="pins">
+  <div class="pin" *ngFor="let prod of Productos">
+    <ion-card color="light"  mode="md" routerLink="/detalle-producto/{{prod.producto_id}}/{{prod.tipo_producto_id}}">
+      <img [src]="prod.url_foto">
+      <ion-card-header>
+        <ion-card-subtitle class="sub-producto ion-text-start">{{ prod.nombre }}</ion-card-subtitle>
+        <ion-card-title class="title-producto ion-text-start">
+          <ion-label class="title-producto" *ngIf="prod.precio_promocion == null"><b>$ {{ prod.precio }}</b></ion-label>
+          <ion-label class="title-producto" *ngIf="prod.precio_promocion !== null">
+            <s>$ {{ prod.precio }}</s> <br><ion-badge class="title-producto" color="reddark"><h6>$ {{ prod.precio_promocion }}</h6></ion-badge>
+          </ion-label>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</div> -->
+
+<ion-grid class=" ion-text-center">
+  <ion-row>
+    <ion-col class="ion-no-padding" size-lg="3" size-md="4" size-sm="6" size="6" *ngFor="let prod of Productos">
+      <ion-card color="light" mode="md" (click)="navigateTo(prod.producto_id, prod.tipo_producto_id)">
+        <img [src]="prod.url_foto">
+        <ion-card-header>
+          <ion-card-subtitle class="sub-producto ion-text-start">{{ prod.nombre }}</ion-card-subtitle>
+          <ion-card-title class="title-producto ion-text-start">
+            <ion-label class="title-producto" *ngIf="prod.precio_promocion === '0.00'"><b>$ {{ prod.precio }}</b></ion-label>
+            <ion-label class="title-producto" *ngIf="prod.precio_promocion !== '0.00'">
+              <s>$ {{ prod.precio }}</s> <br>
+              <ion-badge class="title-producto" color="reddark">
+                <h6>$ {{ prod.precio_promocion }}</h6>
+              </ion-badge>
+            </ion-label> <br>
+            <div class="sub-producto ion-text-end">
+              <ion-label color="danger"><b>
+                  <ion-icon slot="start" name="person"></ion-icon> {{ prod.nombre_persona }}
+                </b></ion-label>
+            </div>
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<div class="pins" *ngIf="Productos.length ==0">
+  <div class="pin" *ngFor="let index of [1,2,3,4,5,6]">
+    <ion-card color="light" mode="md">
+      <ion-thumbnail slot="center" style="width: 200px; height: 80px">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</div>
+
+<ion-infinite-scroll threshold="150px" (ionInfinite)="loadData( $event )">
+  <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando productos...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>

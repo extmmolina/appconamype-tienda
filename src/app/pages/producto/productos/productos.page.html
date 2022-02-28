@@ -1,0 +1,79 @@
+<ion-header no-border translucent>
+    <ion-toolbar color="primary" class="ion-text-uppercase">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <h6>Mis productos</h6>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list *ngIf="productos">
+        <ion-item *ngFor="let producto of productos; let i = index" lines="none" color="light"
+                  (click)="lanzarMenu(producto.producto_id, i)">
+            <ion-thumbnail slot="end" color="light">
+                <img [src]="producto.url_foto">
+            </ion-thumbnail>
+            <ion-label>
+                <h4><b>{{ producto.nombre }}</b></h4>
+                <p>{{ producto.descripcion }}</p>
+                <h2 *ngIf="producto.precio_promocion == '0.00'"><b>$ {{ producto.precio }}</b></h2>
+                <h2 *ngIf="producto.precio_promocion !== '0.00'"><s>$ {{ producto.precio }}</s> <br>
+                    <ion-badge color="reddark">
+                        <h6>$ {{ producto.precio_promocion }}</h6>
+                    </ion-badge>
+                </h2>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="loading">
+        <ion-item color="light" *ngFor="let index of [1, 2, 3]">
+            <ion-thumbnail slot="end">
+                <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label class="ion-text-wrap">
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <i *ngIf="(productos.length == 0 && !loading)" class="material-icons-outlined" style="font-size: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: gray;
+    transform: translate(-50%, -50%);">policy</i>
+    <ion-label *ngIf="(productos.length == 0 && !loading)">
+        <h1 class="ion-text-center" color="gray;">Sin datos registrados</h1>
+    </ion-label>
+
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="pink" size="small">
+            <i class="material-icons-outlined">add</i>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+            <ion-fab-button (click)="showModal()" color="primary" data-desc="Agregar producto">
+                <ion-icon name="md-add"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button (click)="share()" color="secondary" data-desc="share">
+                <ion-icon name="share"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button
+                    color="tealdark"
+                    size="small"
+                    (click)="openUrl()"
+            >
+                <i class="material-icons-outlined">cloud_download</i>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-content fullscreen>
+  <ion-card color="light" (click)="openMyVideo(vid.id.videoId)" *ngFor="let vid of posts">
+    <img [src]="vid.snippet.thumbnails.high.url" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ vid.snippet.publishedAt | date:'short' }}</ion-card-subtitle>
+      <ion-card-title>{{vid.snippet.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{vid.snippet.description}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData( $event )">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando videos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

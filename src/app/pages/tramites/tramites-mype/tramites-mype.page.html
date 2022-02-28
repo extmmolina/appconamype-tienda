@@ -1,0 +1,14 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content>
+  <ion-list *ngIf="menu">
+    <ion-item routerLink="{{opcion.url}}" color="light" detail *ngFor="let opcion of menu; let i = index">
+      <ion-avatar slot="start">
+        <img src="{{opcion.image}}">
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <h2>{{opcion.title}}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

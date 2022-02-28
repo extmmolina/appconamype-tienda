@@ -1,0 +1,67 @@
+<ion-content>
+  <ion-label class="titulo">
+    <ion-button color="primary" shape="round" fill="clear" (click)="cerrarModal()">
+      <i class="material-icons-outlined" slot="start" color="primary">arrow_back</i>
+    </ion-button>
+  </ion-label>
+
+  <img [src]="feria.foto_url">
+
+  <section>
+    <ion-button color="greendark" expand="block" (click)="presentModal()" *ngIf="authUser">INSCRIBIRME</ion-button>
+  </section>
+
+  <ion-card color="light" class="shadow">
+    <ion-card-header color="secondary">
+      <ion-card-title class="ion-text-center">{{ feria.nombre_evento }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list class="no-padding">
+        <ion-item color="light">
+          <i slot="start" class="material-icons-outlined">verified_user</i>
+          <ion-label>
+            <h2>Organiza</h2>
+            <p>{{feria.organizador}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item color="light">
+          <i slot="start" class="material-icons-outlined">access_time</i>
+          <ion-label>
+            <h2>Fechas</h2>
+            <p>{{ feria.fecha_inicio | date: "dd/MM/yyyy" }} - {{ feria.fecha_fin | date: "dd/MM/yyyy" }}</p>
+            <p>{{ feria.hora_inicio }} - {{ feria.hora_fin }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item color="light">
+          <i slot="start" class="material-icons-outlined">apartment</i>
+          <ion-label>
+            <h2>Lugar</h2>
+            <p>{{feria.lugar}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item color="light">
+          <i slot="start" class="material-icons-outlined">directions</i>
+          <ion-label>
+            <h2>Dirección</h2>
+            <p>{{feria.direccion}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item color="light">
+          <i slot="start" class="material-icons-outlined">contact_mail</i>
+          <ion-label>
+            <h2>Contactos</h2>
+            <p>{{ feria.telefono_contacto }}</p>
+            <p>{{ feria.correo_contacto }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label>
+            <p>{{ feria.descripcion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

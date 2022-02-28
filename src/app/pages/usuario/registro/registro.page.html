@@ -1,0 +1,121 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content class="padding">
+    <ion-card>
+        <ion-card-content>
+            <form #formulario="ngForm" (ngSubmit)="onSubmitTemplate()">
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating">Nombre</ion-label>
+                        <ion-input
+                                type="text"
+                                name="nombre"
+                                [(ngModel)]="form.nombre"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Apellido</ion-label>
+                        <ion-input
+                                type="text"
+                                name="apellido"
+                                [(ngModel)]="form.apellido"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Dirección</ion-label>
+                        <ion-input
+                                type="text"
+                                name="direccion"
+                                [(ngModel)]="form.direccion"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Condición Jurídica:</ion-label>
+                        <ion-select
+                          name="condicion_juridica"
+                          (ionChange)="showNit($event)"
+                          required="true"
+                          [(ngModel)]="form.condicion_juridica">
+                          <ion-select-option value="PERSONA NATURAL">Persona Natural (unipersonal)</ion-select-option>
+                          <ion-select-option value="PERSONA JURIDICA">"Persona Jurídica (Sociedad)</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item class="slide-in-fwd-left" *ngIf="showNIT">
+                        <ion-label position="floating">NIT</ion-label>
+                        <ion-input
+                                type="text"
+                                name="nit"
+                                [(ngModel)]="form.nit"
+                                mask="0000-000000-000-0"
+                                required>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">DUI</ion-label>
+                        <ion-input
+                                type="text"
+                                name="dui"
+                                [(ngModel)]="form.dui"
+                                mask="00000000-0"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                  <ion-item>
+                        <ion-label position="floating">Nombre de Empresa</ion-label>
+                        <ion-input
+                                type="text"
+                                name="empresa"
+                                [(ngModel)]="form.empresa"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Teléfono</ion-label>
+                        <ion-input
+                                type="text"
+                                name="telefono"
+                                [(ngModel)]="form.telefono"
+                                mask="0000 0000"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input
+                                type="email"
+                                name="correo"
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                [(ngModel)]="form.correo"
+                                required
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input type="password" name="clave" [(ngModel)]="form.clave" required></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-button
+                        expand="full"
+                        shape="round"
+                        type="submit"
+                        [disabled]="formulario.invalid"
+                >
+                    Registrar
+                </ion-button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

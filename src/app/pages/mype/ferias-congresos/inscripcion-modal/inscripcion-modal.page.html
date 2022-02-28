@@ -1,0 +1,38 @@
+<ion-header no-border translucent>
+  <ion-toolbar color="primary" class="ion-text-uppercase">
+    <ion-button slot="start" color="light" shape="round" fill="clear" (click)="cerrarModal()">
+      <i class="material-icons-outlined" slot="start" color="primary">arrow_back</i>
+    </ion-button>
+    <h6>FORMULARIO DE INSCRIPCIÓN</h6>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #formValidacion="ngForm" (ngSubmit)="onSubmitValid()" color="light">
+    <ion-list>
+      <ion-item lines="none" color="light">
+        <ion-label position="floating">Nombre de la empresa</ion-label>
+        <ion-input type="text" name="nombre" [(ngModel)]="formValid.nombre" required>
+        </ion-input>
+      </ion-item>
+      <ion-item lines="none" color="light">
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input type="text" name="direccion" [(ngModel)]="formValid.direccion" required>
+        </ion-input>
+      </ion-item>
+      <ion-item lines="none" color="light">
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input type="text" name="telefono" mask="0000-0000" [(ngModel)]="formValid.telefono" required>
+        </ion-input>
+      </ion-item>
+      <ion-item lines="none" color="light">
+        <ion-label position="floating">Correo electronico</ion-label>
+        <ion-input type="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="formValid.email" required>
+        </ion-input>
+      </ion-item>
+      <ion-button expand="full" shape="round" type="submit" [disabled]="formValidacion.invalid">
+        Inscribirse
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>

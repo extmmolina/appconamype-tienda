@@ -1,0 +1,57 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content>
+  <div *ngIf="congresos.length > 0">
+    <ion-card *ngFor="let feria of congresos" color="light" class="shadow" (click)="showModal(feria)">
+      <ion-card-header color="secondary">
+        <ion-card-title class="ion-text-center">{{ feria.nombre_evento }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-img class="animated fadeIn fast" [src]="feria.foto_url"></ion-img>
+
+      <ion-card-content>
+        <ion-list class="no-padding">
+          <ion-item color="light">
+            <i slot="start" class="material-icons-outlined">apartment</i>
+            <ion-label>
+              <h2>Lugar</h2>
+              <p>{{ feria.lugar }}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item color="light">
+            <ion-label>
+              <p>{{ feria.descripcion }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="congresos.length == 0">
+    <ion-card *ngFor="let index of [1, 2]" color="light">
+      <ion-card-header color="secondary">
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      </ion-card-header>
+      <ion-thumbnail slot="center" style="width: 100%; height: 200px">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-content>
+        <ion-list class="no-padding">
+          <ion-item color="light">
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

@@ -1,0 +1,43 @@
+<app-menu [titulo]="titulo"></app-menu>
+
+<ion-content class="padding">
+  <ion-card class="welcome-card" color="light">
+    <ion-card-header>
+      <img src="assets/logo.png" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+    </ion-card-header>
+    <ion-card-content></ion-card-content>
+  </ion-card>
+
+  <app-grid [menu]="menu"></app-grid>
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <i class="material-icons-outlined">info</i>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <!-- <ion-fab-button href="https://wa.me/50363030353" target="_blank">
+        <ion-icon color="success" name="logo-whatsapp"></ion-icon>
+      </ion-fab-button> -->
+      <ion-fab-button href="http://www.facebook.com/conamype.sv" target="_blank">
+        <ion-icon color="primary" name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="http://twitter.com/conamypesv" target="_blank">
+        <ion-icon color="teal" name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="https://www.youtube.com/channel/UCfny55QxdG05k6JzQ4wW7cA" target="_blank">
+        <ion-icon color="danger" name="logo-youtube"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button color="primary" (click)="callNow('25929000')">
+        <i class="material-icons-outlined">call</i>
+      </ion-fab-button>
+      <ion-fab-button color="reddark" href="mailto:conamype@conamype.gob.sv" target="_blank">
+        <i class="material-icons-outlined">mail</i>
+      </ion-fab-button>
+      <ion-fab-button color="secondary" href="https://www.conamype.gob.sv" target="_blank">
+        <i class="material-icons-outlined">link</i>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

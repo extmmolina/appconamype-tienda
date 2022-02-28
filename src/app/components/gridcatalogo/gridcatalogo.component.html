@@ -1,0 +1,52 @@
+<ion-content>
+
+  <ion-row>
+    <h5 class="padding-start"><b>Productos nuevos</b></h5>
+  </ion-row>
+
+  <swiper [config]="slideOpts">
+    <ng-template swiperSlide *ngFor="let pelicula of [0,1,2,3]">
+      <ion-card color="light" (click)="verDetalle()">
+        <img src="../../../assets/products/1.jpg">
+        <ion-card-header>
+          <ion-card-subtitle class="sub-producto">Zapatos Hombre</ion-card-subtitle>
+          <ion-card-title class="title-producto">
+            <ion-badge color="success"><b>$ 78.00</b></ion-badge>
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ng-template>
+  </swiper>
+
+  <ion-row>
+    <h5 class="padding-start"><b>Catalogo de productos</b></h5>
+  </ion-row>
+
+  <swiper [config]="slideOptsProducts">
+    <ng-template swiperSlide *ngFor="let pares of [0,1,2,3,4]">
+
+      <ion-row>
+
+        <ion-col size="12" *ngFor="let pelicula of [0,1]">
+          <ion-card mode="md" >
+            <img src="../../../assets/products/4.jpg">
+            <ion-card-header>
+                <ion-badge color="success"><b> $ 18.00</b></ion-badge>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+
+
+      </ion-row>
+    </ng-template>
+
+
+    <ng-template swiperSlide class="slide-mas">
+      <ion-button shape="round" expand="full" class="btn-mas" size="large" (click)="verMas()">
+        <i class="material-icons-outlined">add_circle_outline</i>
+      </ion-button>
+    </ng-template>
+
+  </swiper>
+
+</ion-content>

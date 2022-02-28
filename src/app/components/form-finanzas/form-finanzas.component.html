@@ -1,0 +1,75 @@
+<ion-card color="light">
+  <ion-toolbar [color]="this.color">
+    <h6 class="ion-text-center">{{tituloText}}</h6>
+  </ion-toolbar>
+
+  <ion-card-content class="ion-padding" color="light">
+    <form [formGroup]="form" (ngSubmit)="onSubmitTemplate()">
+      <ion-item>
+        <ion-label position="floating" [color]="this.color">Descripción</ion-label>
+        <ion-input [(ngModel)]="descripcion" type="text" name="descripcion" formControlName="descripcion"></ion-input>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validationMessages.descripcion">
+            <div class="error-message" *ngIf="
+                  form.get('descripcion').hasError(validation.type) &&
+                  (form.get('descripcion').dirty ||
+                    form.get('descripcion').touched)
+                ">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" [color]="this.color">Monto</ion-label>
+        <ion-input type="text" [(ngModel)]="monto" name="monto" formControlName="monto" mask="0*.00"></ion-input>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validationMessages.monto">
+            <div class="error-message" *ngIf="
+                  form.get('monto').hasError(validation.type) &&
+                  (form.get('monto').dirty || form.get('monto').touched)
+                ">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </ion-item>
+
+      <ion-button [color]="this.color" expand="full" type="submit" shape="round" [disabled]="!form.valid">
+        {{ botonText }}
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>
+
+<ion-card color="light">
+  <ion-list color="light">
+    <ion-item-sliding color="light" *ngFor="let item of items; let i = index">
+      <ion-item [color]="this.colorchip">
+        <ion-label class="sub-producto">
+          <h6 class="sub-producto">
+            <ion-badge *ngIf="this.formId === 1" color="tealdark">
+              <ion-label>-$ {{item.monto}}</ion-label>
+            </ion-badge>
+            <ion-badge *ngIf="this.formId === 2" color="reddark">
+              <ion-label>-$ {{item.monto}}</ion-label>
+            </ion-badge>
+            <ion-badge *ngIf="this.formId === 3" color="greendark">
+              <ion-label>+$ {{item.monto}}</ion-label>
+            </ion-badge>
+          </h6>
+          <h6 class="sub-producto">{{item.descripcion}}</h6>
+        </ion-label>
+        <ion-note slot="end" color="light" class="sub-producto-fecha">
+          <ion-badge class="sub-producto-fecha" color="dark">{{item.fecha}}</ion-badge>
+        </ion-note>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option side="end" color="danger" class="optionborder">
+          <i class="material-icons-outlined" (click)="deleteItem(item.empresa_finanza_id)">delete_outline</i>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-card>

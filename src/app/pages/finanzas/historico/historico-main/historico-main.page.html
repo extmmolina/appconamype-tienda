@@ -1,0 +1,59 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content>
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title>¿Cuales han sido mis ganacias?</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      La cuenta de pérdidas y ganancias es un documento que refleja el estado de la empresa. Consulta por rango de fechas el estado de tus finanzas.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-item class="ion-text-center">
+      <ion-label position="floating">Fecha Inicio</ion-label>
+      <ion-datetime  #myPicker1 displayFormat="DD/MM/YYYY" min="1991-01-01" (ionChange)="fecha1(myPicker1.value)"
+        doneText="Seleccionar"></ion-datetime>
+    </ion-item   >
+
+    <ion-item class="ion-text-center">
+      <ion-label position="floating">Fecha Final</ion-label>
+      <ion-datetime #myPicker2 displayFormat="DD/MM/YYYY" min="1991-01-01" (ionChange)="fecha2(myPicker2.value)"
+        doneText="Seleccionar"></ion-datetime>
+    </ion-item>
+  </ion-card>
+  <ion-button color="primary" shape="round" expand="block" (click)="consultaEstado()">Consultar</ion-button>
+
+
+  <ion-card color="light">
+
+    <ion-card-header>
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title>Estado de la MYPE</ion-card-title>
+    </ion-card-header>
+
+    <ion-item>
+      <ion-label slot="start">Total de ventas:</ion-label>
+      <ion-badge slot="end" color="greendark">+ {{ this.totalventas }} $</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-label slot="start">Total de gastos:</ion-label>
+      <ion-badge slot="end" color="reddark">- {{ this.totalgastos }} $</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-label slot="start">Total de compras:</ion-label>
+      <ion-badge slot="end" color="purple">- $ {{ this.totalcompras }} $</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-label slot="start">Estado actual:</ion-label>
+      <ion-badge slot="end" color="primary">{{ this.totalestado }} $</ion-badge>
+    </ion-item>
+    
+  </ion-card>
+</ion-content>

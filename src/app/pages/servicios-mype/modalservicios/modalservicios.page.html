@@ -1,0 +1,37 @@
+<ion-header no-border translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="secondary">
+      <ion-card-title>Sedes de CONAMYPE</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Esta sección te ayuda a buscar los difrenetes centros de Atención de CONAMYPE. Selecciona uno y espera que cargue
+      en el mapa.
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Centros de CONAMYPE</ion-label>
+        <ion-select value="centroconamype" interface="action-sheet">
+          <ion-select-option *ngFor="let cedes of cconamype" [value]="cedes.servicio_id">{{ cedes.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-button shape="round" expand="full" (click)="buscarCede()">
+        Buscar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+

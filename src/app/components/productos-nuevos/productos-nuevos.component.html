@@ -1,0 +1,39 @@
+<ion-row>
+  <h6 class="padding-start"><b>Productos nuevos</b></h6>
+</ion-row>
+
+<swiper [config]="slideOpts">
+  <ng-template swiperSlide *ngFor="let producto of nuevosProductos">
+    <ion-card color="light" (click)="navigateTo(producto.producto_id, producto.tipo_producto_id)">
+      <img [src]="producto.url_foto">
+      <ion-card-header>
+        <ion-card-subtitle class="sub-producto ion-text-start">{{ producto.nombre }}</ion-card-subtitle>
+        <ion-card-title class="title-producto ion-text-start">
+          <h6 class="title-producto" *ngIf="producto.precio_promocion === '0.00'"><b>$ {{ producto.precio }}</b></h6>
+          <h6 class="title-producto" *ngIf="producto.precio_promocion !== '0.00'"><s>$ {{ producto.precio }}</s> <br>
+            <ion-badge class="title-producto" color="reddark">
+              <h6>$ {{ producto.precio_promocion }}</h6>
+            </ion-badge>
+          </h6>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ng-template>
+</swiper>
+
+<swiper [config]="slideOpts" *ngIf="nuevosProductos.length ==0">
+  <ng-template swiperSlide *ngFor="let index of [1,2,3]">
+    <ion-card color="light">
+      <ion-thumbnail slot="center" style="width: 200px; height: 80px">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ng-template>
+</swiper>

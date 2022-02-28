@@ -1,0 +1,49 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content>
+  <div *ngIf="cursos.length > 0">
+    <ion-card color="light">
+      <ion-toolbar color="dark">
+        <ion-title class="ion-text-center"><b>{{nombreCurso}}</b></ion-title>
+      </ion-toolbar>
+    </ion-card>
+    <!-- <ion-searchbar class="item" color="light" placeholder="Buscar cursos"></ion-searchbar> -->
+
+    <ion-card *ngFor="let curso of cursos" color="light" color="light" routerLink="/detalle-curso/{{curso.curso_id}}">
+      <ion-list>
+        <ion-item color="light">
+          <ion-thumbnail slot="start">
+            <ion-img *ngIf="curso.url_foto != 'N/A'" [src]="curso.url_foto"></ion-img>
+            <ion-img *ngIf="curso.url_foto == 'N/A'" src="assets/image-placeholder.png"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">
+            <b>{{ curso.nombre }}</b>
+            <p>{{ curso.descripcion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+  <div *ngIf="cursos.length == 0">
+    <ion-card>
+      <ion-toolbar>
+        <ion-skeleton-text animated style="width: 100%; height: 50px"></ion-skeleton-text>
+      </ion-toolbar>
+    </ion-card>
+    <ion-card *ngFor="let index of [1, 2, 3, 4]" color="light" color="light">
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">
+            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header no-border translucent>
+  <ion-toolbar color="primary">
+    <ion-button (click)="save()" slot="end" fill="outline" color="secondary" shape="round" size="small" style="padding-right: 15px;">Guardar</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar type="text" debounce="5000" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="isItemAvailable">
+    <ion-item *ngFor="let item of items">
+      <ion-label>{{item.val}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="item.isChecked" (click)="select(item)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
